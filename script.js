@@ -5,7 +5,7 @@ const sendButton = document.getElementById('send-button');
 
 // Ganti dengan URL Webhook n8n Anda yang sebenarnya
 // Pastikan webhook Anda di n8n diatur untuk menerima POST request dan mengembalikan JSON dengan kunci 'reply'.
-const N8N_WEBHOOK_URL = 'https://n8ncontabo.duckdns.org/webhook/0cc38c2b-c36c-4401-bb1f-34836aa3e065'; // <-- PENTING: GANTI INI!
+const N8N_WEBHOOK_URL = 'https://n8ncontabo.duckdns.org/webhook-test/0cc38c2b-c36c-4401-bb1f-34836aa3e065'; // <-- PENTING: GANTI INI!
 
 /**
  * Menambahkan pesan ke kotak chat.
@@ -41,7 +41,7 @@ async function sendMessageToN8n(message) {
     const typingIndicator = document.createElement('div');
     typingIndicator.id = 'typing-indicator';
     typingIndicator.classList.add('message', 'bot-message', 'bg-gray-200', 'text-gray-600', 'p-3', 'rounded-xl', 'max-w-[80%]', 'mr-auto', 'rounded-bl-none', 'animate-pulse');
-    typingIndicator.textContent = 'Bot sedang mengetik...';
+    typingIndicator.textContent = 'Bot sedang mengkaji...';
     chatBox.appendChild(typingIndicator);
     chatBox.scrollTop = chatBox.scrollHeight; // Gulir ke bawah untuk melihat indikator
 
@@ -61,12 +61,12 @@ async function sendMessageToN8n(message) {
 
         if (!response.ok) {
             // Tangani error HTTP (misalnya, 404, 500)
-            throw new Error(`Kesalahan HTTP! Status: ${response.status}`);
+            throw new Error(`Error HTTP! Status: ${response.status}`);
         }
 
         const data = await response.json();
         // Asumsi n8n mengembalikan JSON dengan kunci 'reply' yang berisi respons dari Gemini
-        const botReply = data.reply || "Maaf, bot tidak memberikan respons yang valid.";
+        const botReply = data.reply || "Maaf, bot ni sedang jem.";
         appendMessage('bot', botReply);
 
     } catch (error) {
@@ -74,8 +74,8 @@ async function sendMessageToN8n(message) {
         if (typingIndicator.parentNode) {
             typingIndicator.parentNode.removeChild(typingIndicator);
         }
-        console.error('Kesalahan saat mengirim pesan ke n8n:', error);
-        appendMessage('bot', 'Maaf, terjadi masalah koneksi atau server. Silakan coba lagi nanti.');
+        console.error('Kesalahan mengirim pesan ke n8n:', error);
+        appendMessage('bot', 'Maaf, terjadi masalah connction ke server.');
     }
 }
 
@@ -99,5 +99,5 @@ userInput.addEventListener('keypress', (e) => {
 
 // Pesan sambutan awal saat halaman dimuat
 window.onload = () => {
-    appendMessage('bot', 'Halo! Ada yang bisa saya bantu hari ini?');
+    appendMessage('bot', 'Haiii, apa saya boleh bantu ni?');
 };
