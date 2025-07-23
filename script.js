@@ -41,7 +41,7 @@ async function sendMessageToN8n(message) {
     const typingIndicator = document.createElement('div');
     typingIndicator.id = 'typing-indicator';
     typingIndicator.classList.add('message', 'bot-message', 'bg-gray-200', 'text-gray-600', 'p-3', 'rounded-xl', 'max-w-[80%]', 'mr-auto', 'rounded-bl-none', 'animate-pulse');
-    typingIndicator.textContent = 'Bot sedang mengkaji...';
+    typingIndicator.textContent = 'Bot proses...';
     chatBox.appendChild(typingIndicator);
     chatBox.scrollTop = chatBox.scrollHeight; // Gulir ke bawah untuk melihat indikator
 
@@ -66,7 +66,7 @@ async function sendMessageToN8n(message) {
 
         const data = await response.json();
         // Asumsi n8n mengembalikan JSON dengan kunci 'reply' yang berisi respons dari Gemini
-        const botReply = data.reply || "Maaf, bot ni sedang jem.";
+        const botReply = data.reply || "Maaf, bot ni sedang jem la.";
         appendMessage('bot', botReply);
 
     } catch (error) {
@@ -75,7 +75,7 @@ async function sendMessageToN8n(message) {
             typingIndicator.parentNode.removeChild(typingIndicator);
         }
         console.error('Kesalahan mengirim pesan ke n8n:', error);
-        appendMessage('bot', 'Maaf, terjadi masalah connction ke server.');
+        appendMessage('bot', 'Maaf, error connction ke server.');
     }
 }
 
