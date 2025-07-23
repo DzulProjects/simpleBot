@@ -5,7 +5,7 @@ const sendButton = document.getElementById('send-button');
 
 // Ganti dengan URL Webhook n8n Anda yang sebenarnya
 // Pastikan webhook Anda di n8n diatur untuk menerima POST request dan mengembalikan JSON dengan kunci 'reply'.
-const N8N_WEBHOOK_URL = 'https://n8ncontabo.duckdns.org/webhook-test/0cc38c2b-c36c-4401-bb1f-34836aa3e065'; // <-- PENTING: GANTI INI!
+const N8N_WEBHOOK_URL = 'https://n8ncontabo.duckdns.org/webhook/fd7e53a5-d19a-4f30-838b-f626acc67d11/chat'; // <-- PENTING: GANTI INI!
 
 /**
  * Menambahkan pesan ke kotak chat.
